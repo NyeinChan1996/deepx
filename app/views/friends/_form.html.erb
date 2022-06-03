@@ -1,0 +1,67 @@
+<%= form_for @friend do |form| %>
+  <% if @friend.errors.any? %>
+    <h4 style="color:red;">Errors: </h4>
+    <ul>
+    <% @friend.errors.full_messages.each do |message| %>
+      <li style="color:red;"><%=message%></li>
+    <%end%>
+    </ul>
+  <% end %>
+
+<br/>
+<p style="color:#ff0000;">※英語・漢字は半角英数字で入力してください</p>
+<hr>
+  <div class="mb-3 row form-group">
+    <div class="col-sm-1">
+    <label class= "fw-bold col-sm-12 col-form-label text-center" style="border-style:solid; border-color:black;color:#00008B;">必須</label>
+    </div>
+    <%= form.label :first_name, class: "fw-bold col-sm-2 col-form-label"%>
+    <div class="col-sm-9">
+      <%= form.text_field :first_name, class: "form-control col-sm-12" %>
+    </div>
+  </div>
+  <hr>
+
+  <div class="mb-3 row from-group">
+   <div class="col-sm-1">
+   <label class= "fw-bold col-sm-12 col-form-label text-center" style="border-style:solid; border-color:black;color:#00008B;">必須</label>
+   </div>
+    <%= form.label :last_name, class: " fw-bold col-sm-2 col-form-label" %>
+    <div class="col-sm-9">
+    <%= form.text_field :last_name, class: "form-control col-sm-12" %>
+    </div>
+  </div>
+  <hr>
+
+  <div class="mb-3 row from-group">
+  <div class="col-sm-1">
+    <label class= "fw-bold col-sm-12 col-form-label text-center" style="border-style:solid; border-color:black;color:#00008B;">必須</label>
+  </div>
+    <%= form.label :email, class: " fw-bold col-sm-2 col-form-label"%>
+    <div class="col-sm-9">
+    <%= form.text_field :email, class: "form-control col-sm-12" %>
+    </div>
+  </div>
+<hr>
+  <div class="mb-3 row from-group">
+  <label class= "fw-bold col-sm-1 col-form-label"></label>
+    <%= form.label :phone,class: " fw-bold col-sm-2 col-form-label"%>
+    <div class="col-sm-9">
+    <%= form.text_field :phone, class: "form-control col-sm-12" %>
+    </div>
+  </div>
+<hr>
+  <div class="mb-3 row from-group">
+    <label class= "fw-bold col-sm-1 col-form-label"></label>
+    <%= form.label :twitter, class: " fw-bold col-sm-2 col-form-label"%>
+    <div class="col-sm-9">
+    <%= form.text_field :twitter, class: "form-control col-sm-12" %>
+    </div>
+  </div>
+<hr>  
+  <br/>
+  <div>
+   <%=form.submit class: 'btn btn-custom' %>
+   <%= link_to "Back to friends", friends_path, class: "btn btn-custom" %>
+  </div>
+<% end %>

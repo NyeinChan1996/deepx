@@ -1,0 +1,40 @@
+version: "3.5"
+
+services:
+  db:
+    image: mysql:5.6
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_DATABASE: "deepx_development"
+    ports:
+      - 3307:3306
+    command: |
+      mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    volumes:
+      - ./mysql/init:/docker-entrypoint-initdb.d
+      - ./mysql/conf/:/etc/mysql/conf.d
+
+  app: &app_base
+    build: .
+    stdin_open: true
+    working_dir: /home/app/deepx/
+    environment:
+      BUNDLE_PATH: /bundle
+      SPROCKETS_CACHE: /cache
+    command: bash -c "
+      rm -f tmp/pids/server.pid &&
+      (bundle check || (bundle config build.nokogiri --use-system-libraries && bundle install)) &&
+      ./bin/rake db:create db:migrate &&
+      ./bin/rails s -p 3000 -b 0.0.0.0"
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    tty: true
+    volumes:
+      - ./:/home/app/deepx:cached
+      - .:/deepx
+
+volumes:
+  bundle2:
+    driver: local
