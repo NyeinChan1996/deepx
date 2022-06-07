@@ -31,6 +31,8 @@ gem 'cancancan', '~> 3.3'
 gem 'bootstrap-sass', '~> 3.2.0'
 # font-awesome
 gem 'font-awesome-sass', '~> 4'
+# recaptcha
+gem 'recaptcha'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

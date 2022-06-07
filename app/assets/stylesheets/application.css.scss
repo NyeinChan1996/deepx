@@ -20,7 +20,7 @@
  @import "font-awesome";
 
 
- .btn-custom {
+  .btn-custom {
     background: #00008B;
     border-radius: 6px;
     font-family: Arial;
@@ -30,4 +30,10 @@
     font-size: 16px;
     padding: 10px 20px 10px 20px;
     text-decoration: none;
+  }
+
+  .page-title {
+    text-align: center;
+    color:#00008B;
+    font-weight: bold;
   }

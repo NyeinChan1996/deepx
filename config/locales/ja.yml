@@ -2,3 +2,5 @@ ja:
   home:  
     hello: "こんにちはレール！"
     first_page: "初めてのページです。"
+  login:
+    title: "ログイン"

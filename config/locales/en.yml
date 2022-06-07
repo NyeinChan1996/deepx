@@ -33,3 +33,5 @@ en:
   home:
     hello: "Hello Rails"
     first_page: "This is my frist web page"
+  login:
+    title: "ログイン"
