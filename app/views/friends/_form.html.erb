@@ -1,4 +1,5 @@
 <%= form_for @friend do |form| %>
+  <%= form.hidden_field :incomplete_flg, :value => @friend.incomplete_flg %>
   <% if @friend.errors.any? %>
     <h4 style="color:red;">Errors: </h4>
     <ul>
@@ -9,59 +10,176 @@
   <% end %>
 
 <br/>
-<p style="color:#ff0000;">※英語・漢字は半角英数字で入力してください</p>
-<hr>
-  <div class="mb-3 row form-group">
+<div>
+<span><p style="color:#ff0000;">※英語・漢字は半角英数字で入力してください</p></span>
+<span><input type="text" class= "form-control col-sm-12 demo" style= "width:50px;" disabled= true ></span><br>
+<div>  
+  <hr>
+    <div class="mb-3 row form-group">
+      <div class="col-sm-1">
+      <label class= "fw-bold col-sm-12 col-form-label text-center" style="border-style:solid; border-color:black;color:#00008B;">必須</label>
+      </div>
+      <%= form.label :first_name, class: "fw-bold col-sm-2 col-form-label"%>
+      <div class="col-sm-9">
+        <%= form.text_field :first_name, class: "form-control col-sm-12 test-count"%>
+      </div>
+    </div>
+    <hr>
+
+    <div class="mb-3 row from-group">
     <div class="col-sm-1">
     <label class= "fw-bold col-sm-12 col-form-label text-center" style="border-style:solid; border-color:black;color:#00008B;">必須</label>
     </div>
-    <%= form.label :first_name, class: "fw-bold col-sm-2 col-form-label"%>
-    <div class="col-sm-9">
-      <%= form.text_field :first_name, class: "form-control col-sm-12" %>
+      <%= form.label :last_name, class: "fw-bold col-sm-2 col-form-label" %>
+      <div class="col-sm-9">
+      <%= form.text_field :last_name, class: "form-control col-sm-12 test-count" %>
+      </div>
     </div>
-  </div>
-  <hr>
+    <hr>
 
-  <div class="mb-3 row from-group">
-   <div class="col-sm-1">
-   <label class= "fw-bold col-sm-12 col-form-label text-center" style="border-style:solid; border-color:black;color:#00008B;">必須</label>
-   </div>
-    <%= form.label :last_name, class: " fw-bold col-sm-2 col-form-label" %>
-    <div class="col-sm-9">
-    <%= form.text_field :last_name, class: "form-control col-sm-12" %>
+    <div class="mb-3 row from-group">
+    <div class="col-sm-1">
+      <label class= "fw-bold col-sm-12 col-form-label text-center" style="border-style:solid; border-color:black;color:#00008B;">必須</label>
     </div>
-  </div>
+      <%= form.label :email, class: " fw-bold col-sm-2 col-form-label"%>
+      <div class="col-sm-9">
+      <%= form.text_field :email, class: "form-control col-sm-12 test-count" %>
+      </div>
+    </div>
   <hr>
-
-  <div class="mb-3 row from-group">
-  <div class="col-sm-1">
-    <label class= "fw-bold col-sm-12 col-form-label text-center" style="border-style:solid; border-color:black;color:#00008B;">必須</label>
-  </div>
-    <%= form.label :email, class: " fw-bold col-sm-2 col-form-label"%>
-    <div class="col-sm-9">
-    <%= form.text_field :email, class: "form-control col-sm-12" %>
-    </div>
-  </div>
-<hr>
-  <div class="mb-3 row from-group">
-  <label class= "fw-bold col-sm-1 col-form-label"></label>
-    <%= form.label :phone,class: " fw-bold col-sm-2 col-form-label"%>
-    <div class="col-sm-9">
-    <%= form.text_field :phone, class: "form-control col-sm-12" %>
-    </div>
-  </div>
-<hr>
-  <div class="mb-3 row from-group">
+    <div class="mb-3 row from-group">
     <label class= "fw-bold col-sm-1 col-form-label"></label>
-    <%= form.label :twitter, class: " fw-bold col-sm-2 col-form-label"%>
-    <div class="col-sm-9">
-    <%= form.text_field :twitter, class: "form-control col-sm-12" %>
+      <%= form.label :phone,class: " fw-bold col-sm-2 col-form-label"%>
+      <div class="col-sm-9">
+      <%= form.text_field :phone, class: "form-control col-sm-12 test-count" %>
+      </div>
     </div>
-  </div>
-<hr>  
+  <hr>
+    <div class="mb-3 row from-group">
+      <label class= "fw-bold col-sm-1 col-form-label"></label>
+      <%= form.label :twitter, class: " fw-bold col-sm-2 col-form-label"%>
+      <div class="col-sm-9">
+      <%= form.text_field :twitter, class: "form-control col-sm-12 test-count" %>
+      </div>
+    </div>
+  <hr>
+  <div class="mb-3 row from-group">
+      <label class= "fw-bold col-sm-1 col-form-label"></label>
+      <%= form.label :checkBox, class: " fw-bold col-sm-2 col-form-label"%>
+        <div class="col-sm-9 parent_checkBox">
+            <%= form.check_box :checkBoxOne, class: "sub_checkBox" %>
+            <%= "One" %>
+            <%= form.check_box :checkBoxTwo, class: "sub_checkBox" %>
+            <%= "Two" %>
+            <%= form.check_box :checkBoxThree, class: "sub_checkBox" %>
+            <%= "Three" %>
+        </div>
+    </div>
+  <hr>
+    <div class="mb-3 row from-group">
+      <label class= "fw-bold col-sm-1 col-form-label"></label>
+      <%= form.label :file, class: " fw-bold col-sm-2 col-form-label"%>
+      <div class="col-sm-9 parent_file">
+        <%= form.file_field :file1, class: "form-control col-sm-12 sub_file" %>
+        <%= form.text_field :height, class: "form-control col-sm-12 sub_file" %>
+        <%= form.text_field :weight, class: "form-control col-sm-12 sub_file" %>
+      </div>
+    </div>
+  <hr>
+
+</div>
+
   <br/>
   <div>
    <%=form.submit class: 'btn btn-custom' %>
-   <%= link_to "Back to friends", friends_path, class: "btn btn-custom" %>
+    <%= link_to "Back to friends", friends_path, class: "btn btn-custom" %>
   </div>
 <% end %>
+
+<script>
+  var friend =  <%= raw @friend.to_json %>;
+  var input_count = 0, has_data, before_input_file_count;
+
+  if (!friend.id){
+    input_count = 0;
+    var has_data = false;
+  }else {
+     var friend_elements = ["first_name", "last_name", "email", "phone", "twitter", "checkBoxOne", "checkBoxTwo", "checkBoxThree"];
+    for (data of friend_elements) {
+      if (friend[data]) {
+        input_count++;
+      }
+    }
+  }
+  send_input_data_field_count(input_count);
+
+  var sub_checkBoxes = document.getElementsByClassName('sub_checkBox');
+  $(".sub_checkBox").on('change', function(){
+    var checked_count = 0;
+    for (var j = 0; j < sub_checkBoxes.length; j++){
+        if (sub_checkBoxes[j].checked) {
+          checked_count++;
+        }
+    }
+
+    if (checked_count == 1 && this.checked) {
+      input_count++;
+    }else if (checked_count == 0) {
+      input_count--;
+    }
+    send_input_data_field_count(input_count);
+  });
+
+  
+
+  $(".sub_file").on('click', function(){
+    var sub_file_count = document.querySelector(".parent_file").childNodes.length;
+    console.log(sub_file_count)
+    before_input_file_count = 0;
+    for (var i = 0; i < sub_file_count; i++){
+      if (document.querySelector(".parent_file").childNodes[i].value) {
+        before_input_file_count++;
+      }
+    }
+
+    if ($(this).val()) { 
+      has_data = true
+    }else {
+      has_data = false
+    }
+  });
+
+  $(".sub_file").on('change', function(){
+    if ($(this).val() && before_input_file_count == 0) { 
+      input_count++;
+    }else if (!$(this).val() && has_data && before_input_file_count == 1) { 
+      input_count--;
+    }
+    send_input_data_field_count(input_count);
+  });
+
+  $(".test-count").on('click', function(){
+    if ($(this).val()) { 
+      has_data = true
+    }else {
+      has_data = false
+    }
+  });
+
+  $(".test-count").on('change', function(){
+    if ($(this).val() && !has_data) { 
+      input_count++;
+    }else if (!$(this).val() && has_data) { 
+      input_count--;
+    }
+    send_input_data_field_count(input_count);
+  });
+
+  function send_input_data_field_count(input_count){
+    $.ajax({
+      }).done(function (data) {
+        $('.demo').val(input_count);
+      });
+  }
+
+</script>

@@ -4,6 +4,11 @@ class FriendsController < ApplicationController
   # GET /friends or /friends.json
   def index
     @friends = Friend.all
+    # @friends.map do |friend|
+    #   if friend.phone.length < 7
+    #     friend.incomplete_flg = true
+    #   end
+    # end
   end
 
   # GET /friends/1 or /friends/1.json
@@ -37,6 +42,7 @@ class FriendsController < ApplicationController
   # PATCH/PUT /friends/1 or /friends/1.json
   def update
     respond_to do |format|
+      puts friend_params.inspect
       if @friend.update(friend_params)
         format.html { redirect_to friend_url(@friend), notice: "Friend was successfully updated." }
         format.json { render :show, status: :ok, location: @friend }
@@ -65,6 +71,8 @@ class FriendsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def friend_params
-      params.require(:friend).permit(:first_name, :last_name, :email, :phone, :twitter)
+      update_params = params.require(:friend).permit(:first_name, :last_name, :email, :phone, :twitter, :incomplete_flg)
+      update_params[:incomplete_flg] = true if update_params[:phone].length < 7
+      update_params
     end
 end

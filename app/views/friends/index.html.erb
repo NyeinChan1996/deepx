@@ -5,44 +5,66 @@
 <ul class="list-group">
   <% @friends.each do |friend| %>
     <li class="list-group-item">
-
-    <hr>
-  <div class = "row">
-    <label class="col-md-4" style="font-weight:bold;"> Name:</label>
-    <div class = "col-md-8">
-    <%= friend.first_name %>
-    <%= friend.last_name %>
+<div class = " <%= friend.incomplete_flg? ? 'bg-danger' : '' %>" id = "<%= friend.id %>">
+<div id = "<%= friend.id %>">
+  <hr>
+    <div class = "row">
+      <label class="col-md-4" style="font-weight:bold;"> Name:</label>
+      <div class = "col-md-8">
+      <%= friend.first_name %>
+      <%= friend.last_name %>
+      </div>
     </div>
-  </div>
 
-<hr>
-  <div class = "row">
-    <label class="col-md-4" style="font-weight:bold;"> Email:</label>
-    <div class = "col-md-8">
-    <%= friend.email %>
+  <hr>
+    <div class = "row">
+      <label class="col-md-4" style="font-weight:bold;"> Email:</label>
+      <div class = "col-md-8">
+      <%= friend.email %>
+      </div>
     </div>
-  </div>
 
-<hr>
-  <div class = "row">
-    <label class="col-md-4" style="font-weight:bold;"> Phone:</label>
-    <div class = "col-md-8">
-    <%= friend.phone %>
+  <hr>
+    <div class = "row">
+      <label class="col-md-4" style="font-weight:bold;"> Phone:</label>
+      <div class = "col-md-8">
+      <%= friend.phone %>
+      </div>
     </div>
-  </div>
 
-<hr>
-  <div class = "row">
-    <label class="col-md-4" style="font-weight:bold;"> Twitter:</label>
-    <div class = "col-md-8">
-    <%= friend.twitter %>
+  <hr>
+    <div class = "row">
+      <label class="col-md-4" style="font-weight:bold;"> Twitter:</label>
+      <div class = "col-md-8">
+      <%= friend.twitter %>
+      </div>
     </div>
-  </div>
   <br/>
-<%= link_to 'Show', friend_path(friend.id), class: "btn btn-custom"%></td>
-<%= link_to 'New', new_friend_path, class: "btn btn-custom"%></td>
-<%= link_to 'Edit', edit_friend_path(friend), class: "btn btn-custom" %>
-<%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-custom" %>
+    <%= link_to 'Show', friend_path(friend.id), class: "btn btn-custom"%></td>
+    <%= link_to 'New', new_friend_path, class: "btn btn-custom"%></td>
+    <%= link_to 'Edit', edit_friend_path(friend), class: "btn btn-custom" %>
+    <%= link_to 'Destroy', friend, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-custom" %><br><br>
+    <span id = "msg-<%= friend.id %>" class="<%= friend.incomplete_flg? ? 'incomplete-show' : 'incomplete-hide' %>">登録内容に不備があります。修正してください。</span>
+  </div>
     </li>
   <%end%>
 </ul>
+
+<script>
+var options =  <%= raw @friends.to_json %>;
+ for(var friend of options){
+  var element = document.getElementById(friend.id);
+  var msg_id = "msg-"+friend.id
+  var msg = document.getElementById(msg_id)
+   if (friend.phone.length < 7){
+    element.classList.add("bg-danger");
+    msg.classList.remove("incomplete-hide");
+    msg.classList.add("incomplete-show");
+   }
+  else{
+    element.classList.remove("bg-danger");
+    msg.classList.remove("incomplete-show");
+    msg.classList.add("incomplete-hide");
+  }
+ }
+</script>
